@@ -311,6 +311,12 @@ app.post('/api/auth/register', async (req, res) => {
         res.status(500).json({ success: false, message: err.message });
     }
 });
+// สั่งให้ Express ดึงไฟล์หน้าเว็บ (index.html, css, js) มาแสดง
+app.use(express.static('./')); 
 
+// หรือถ้าต้องการกำหนด Route หน้าแรกโดยตรง
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 // รันเซิร์ฟเวอร์
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
