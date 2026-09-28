@@ -312,7 +312,13 @@ app.post('/api/auth/register', async (req, res) => {
     }
 });
 
+// ชี้ไปที่โฟลเดอร์ public
+app.use(express.static(path.join(__dirname, 'public')));
 
+// สั่งให้ส่งไฟล์ index.html เมื่อเปิดหน้าแรก
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // รันเซิร์ฟเวอร์
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
