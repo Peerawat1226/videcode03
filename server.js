@@ -311,22 +311,7 @@ app.post('/api/auth/register', async (req, res) => {
         res.status(500).json({ success: false, message: err.message });
     }
 });
-// สั่งให้ Express ดึงไฟล์หน้าเว็บ (index.html, css, js) มาแสดง
-app.use(express.static('./')); 
 
-// หรือถ้าต้องการกำหนด Route หน้าแรกโดยตรง
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
-
-const path = require('path');
-
-// ชี้ไปยังโฟลเดอร์ที่เก็บไฟล์ index.html
-app.use(express.static(path.join(__dirname, 'public'))); 
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 
 // รันเซิร์ฟเวอร์
