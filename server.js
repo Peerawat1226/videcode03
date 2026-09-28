@@ -14,7 +14,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_key';
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); // วางบรรทัดนี้ไว้เหมือนบรรทัดที่ 17
 
 // Connection Pool
 const pool = mysql.createPool({
@@ -315,9 +315,8 @@ app.post('/api/auth/register', async (req, res) => {
 // สั่งเปิดโฟลเดอร์ public โดยตรง
 app.use(express.static('public'));
 
-// สั่งให้ส่งไฟล์ index.html
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // รันเซิร์ฟเวอร์
