@@ -318,5 +318,16 @@ app.use(express.static('./'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
+
+const path = require('path');
+
+// ชี้ไปยังโฟลเดอร์ที่เก็บไฟล์ index.html
+app.use(express.static(path.join(__dirname, 'public'))); 
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
 // รันเซิร์ฟเวอร์
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
