@@ -312,12 +312,12 @@ app.post('/api/auth/register', async (req, res) => {
     }
 });
 
-// ชี้ไปที่โฟลเดอร์ public
-app.use(express.static(path.join(__dirname, 'public')));
+// สั่งเปิดโฟลเดอร์ public โดยตรง
+app.use(express.static('public'));
 
-// สั่งให้ส่งไฟล์ index.html เมื่อเปิดหน้าแรก
+// สั่งให้ส่งไฟล์ index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 // รันเซิร์ฟเวอร์
